@@ -14,22 +14,22 @@
     <div class="contendor">
         <div class="resumen">
             <div class="sald_infeg">
-                <center><span class="saldo">Saldo <br> Q 3000.00 </span></center><br>
+                <center><span class="saldo" id="saldo">Saldo <br> Q 0.00 </span></center><br>
                 <div class="ing_eg">
-                    <span class="ing">Ingresos 5000</span> <span class="eg">Egresos 2000</span>
+                    <span class="ing" id="ingreso">Ingresos Q 0.00</span> <span class="eg" id="egreso">Egresos Q 0.00</span>
                 </div>
             </div>
         </div>
 
         <div class="registro">
             <p class="titulo">Nuevo registro</p>
-            <select class="select">
-                <option value="value1" selected>Ingreso</option>
-                <option value="value2">Egreso</option>
+            <select class="select" id="select">
+                <option value="ingreso" selected>Ingreso</option>
+                <option value="egreso">Egreso</option>
             </select>
             <input type="number" id="valor" placeholder="Cantidad"> <br>
             <input type="text" id="descripcion" placeholder="Descripcion"> <br>
-            <input type="button" value="Agregar">
+            <input type="button" value="Agregar" onclick="calcular()">
             
 
             <div class="resumen_registro">
