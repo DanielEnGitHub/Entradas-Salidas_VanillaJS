@@ -5,9 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="contendor">
+        <div class="resumen">
+            <span>Saldo <br> Q 3000.00</span> <br>
+            <span>Ingresos 5000</span> <span>Egresos 2000</span>
+        </div>
+
+        <div class="registro">
+            <select>
+                <option value="value1" selected>Ingreso</option>
+                <option value="value2">Egreso</option>
+            </select>
+            <input type="number" id="valor" placeholder="Cantidad">
+            <input type="text" id="descripcion" placeholder="Descripcion">
+            <input type="button" value="Agregar">
+        </div>
+
+        
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>
