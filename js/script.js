@@ -14,6 +14,10 @@ let total = 0;
 const ingreso_array = [];
 const egreso_array = [];
 
+// RESUMEN DE REGISTROS
+const contenido_ingresos = document.getElementById('contenido_ingresos');
+const contenido_egresos = document.getElementById('contenido_egresos');
+
 // FUNCION PARA VALIDAR DATOS
 const calcular = () => {
     if(cantidad.value == '' && descripcion.value == ''){
@@ -47,11 +51,16 @@ const ingresoEgreso = () => {
         total = funcIngresos() - funcEgresos();
         ingreso.innerHTML = `Ingresos ${formatoMoneda(funcIngresos())}`;
 
+        contenido_ingresos.innerHTML = funcionIngresos();
+
     }else if (select.value == 'egreso'){
         egreso_array.push( new Egreso(descripcion.value, Number(cantidad.value)) );
         funcEgresos();
         total = funcIngresos() - funcEgresos();
         egreso.innerHTML = `Egresos ${formatoMoneda(funcEgresos())}`;
+
+        contenido_egresos.innerHTML = funcionEgresos();
+        
     }
     saldo.innerHTML = `Saldo <br> ${formatoMoneda(total)}`;
 }
@@ -66,7 +75,6 @@ const formatoMoneda = (valor)=>{
 const funcIngresos = () =>{
     let total_ingreso = 0;
     for(let x of ingreso_array){
-        console.log(x);
         total_ingreso += x._valor;
     }
 
@@ -81,4 +89,67 @@ const funcEgresos = () =>{
     }
 
     return total_egreso;
+}
+
+
+
+
+// FUNCION PARA RECCORRER ARRAY DE INGRESOS
+const funcionIngresos = () =>{
+    let ingresosHTML = '';
+    for (const x of ingreso_array) {
+        ingresosHTML += `<strong>${x.id} ${x._descripcion}</strong> <span class='ingresos_color'>${x._valor} 
+        <a onclick="eliminarIngreso(${x.id})"> <button class='delete'><ion-icon name="trash"></ion-icon></button> </a></span><br>`;
+    }
+    return ingresosHTML;    
+}
+
+
+
+
+
+
+// FUNCION PARA RECCORRER ARRAY DE EGRESOS
+const funcionEgresos = () =>{
+    let egresosHTML = '';
+    for (const x of egreso_array) {
+        egresosHTML += `<strong>${x.id} ${x._descripcion}</strong> <span class='egresos_color'>${x._valor} 
+        <a onclick="eliminarEgreso(${x.id})"> <button class='delete'><ion-icon name="trash"></ion-icon></button> </a> </span> <br>`;
+    }
+    return egresosHTML;
+    
+}
+
+
+const eliminarIngreso = (id_rec) => {
+    let eliminar = ingreso_array.findIndex( ingreso => ingreso.id === id_rec);
+    ingreso_array.splice(eliminar, 1);
+    contenido_ingresos.innerHTML = funcionIngresos();
+
+    funcIngresos();
+    ingreso.innerHTML = `Ingresos ${formatoMoneda(funcIngresos())}`;
+
+    funcEgresos();
+    egreso.innerHTML = `Egresos ${formatoMoneda(funcEgresos())}`;
+
+    total = funcIngresos() - funcEgresos();
+    saldo.innerHTML = `Saldo <br> ${formatoMoneda(total)}`;
+    // console.log( delete ingreso_array[id_rec - 1] )
+}
+
+
+const eliminarEgreso = (id_rec) => {
+    let eliminar = egreso_array.findIndex( ingreso => ingreso.id === id_rec);
+    egreso_array.splice(eliminar, 1);
+    contenido_egresos.innerHTML = funcionEgresos();
+
+    funcIngresos();
+    ingreso.innerHTML = `Ingresos ${formatoMoneda(funcIngresos())}`;
+
+    funcEgresos();
+    egreso.innerHTML = `Egresos ${formatoMoneda(funcEgresos())}`;
+
+    total = funcIngresos() - funcEgresos();
+    saldo.innerHTML = `Saldo <br> ${formatoMoneda(total)}`;
+    // console.log( delete ingreso_array[id_rec - 1] )
 }

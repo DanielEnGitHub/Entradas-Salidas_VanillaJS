@@ -142,6 +142,7 @@ input[type=button]{
 .contenedor_registro{
     display: flex;
     max-height: 200px;
+    overflow-y: scroll;
 }
 
 .reg_ing{
@@ -151,4 +152,21 @@ input[type=button]{
 
 .reg_eg{
     width: 50%;
+}
+
+.ingresos_color{
+    color: #42b246;
+}
+
+.egresos_color{
+    color: red;
+}
+
+.delete{
+    background-color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
 }
