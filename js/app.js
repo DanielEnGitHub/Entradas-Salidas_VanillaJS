@@ -91,36 +91,28 @@ const funcEgresos = () =>{
     return total_egreso;
 }
 
-
-
-
 // FUNCION PARA RECCORRER ARRAY DE INGRESOS
 const funcionIngresos = () =>{
     let ingresosHTML = '';
     for (const x of ingreso_array) {
-        ingresosHTML += `<strong>${x.id} ${x._descripcion}</strong> <span class='ingresos_color'>${x._valor} 
+        ingresosHTML += `<strong>${x.id} ${x._descripcion}</strong> <span class='ingresos_color'>${formatoMoneda(x._valor)} 
         <a onclick="eliminarIngreso(${x.id})"> <button class='delete'><ion-icon name="trash"></ion-icon></button> </a></span><br>`;
     }
     return ingresosHTML;    
 }
 
-
-
-
-
-
 // FUNCION PARA RECCORRER ARRAY DE EGRESOS
 const funcionEgresos = () =>{
     let egresosHTML = '';
     for (const x of egreso_array) {
-        egresosHTML += `<strong>${x.id} ${x._descripcion}</strong> <span class='egresos_color'>${x._valor} 
+        egresosHTML += `<strong>${x.id} ${x._descripcion}</strong> <span class='egresos_color'>${formatoMoneda(x._valor)} 
         <a onclick="eliminarEgreso(${x.id})"> <button class='delete'><ion-icon name="trash"></ion-icon></button> </a> </span> <br>`;
     }
     return egresosHTML;
     
 }
 
-
+// Eliminar un ingreso
 const eliminarIngreso = (id_rec) => {
     let eliminar = ingreso_array.findIndex( ingreso => ingreso.id === id_rec);
     ingreso_array.splice(eliminar, 1);
@@ -134,10 +126,9 @@ const eliminarIngreso = (id_rec) => {
 
     total = funcIngresos() - funcEgresos();
     saldo.innerHTML = `Saldo <br> ${formatoMoneda(total)}`;
-    // console.log( delete ingreso_array[id_rec - 1] )
 }
 
-
+// Eliminar un egreso
 const eliminarEgreso = (id_rec) => {
     let eliminar = egreso_array.findIndex( ingreso => ingreso.id === id_rec);
     egreso_array.splice(eliminar, 1);
@@ -151,5 +142,4 @@ const eliminarEgreso = (id_rec) => {
 
     total = funcIngresos() - funcEgresos();
     saldo.innerHTML = `Saldo <br> ${formatoMoneda(total)}`;
-    // console.log( delete ingreso_array[id_rec - 1] )
 }
